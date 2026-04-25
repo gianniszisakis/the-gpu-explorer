@@ -46,9 +46,10 @@ export default function Gallery() {
           <img
             key={index}
             src={img}
+            loading="lazy"
             onClick={() => setSelected(index)}
             className="w-full h-48 object-cover rounded-xl cursor-pointer
-                       hover:scale-105 transition-transform duration-300"
+                       hover:scale-105 transition-transform duration-300 bg-neutral-800"
           />
         ))}
       </div>
