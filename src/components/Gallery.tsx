@@ -1,8 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { images } from "../data/images";
 
 export default function Gallery() {
   const [selected, setSelected] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selected === null) return;
+
+      if (e.key === "Escape") {
+        setSelected(null);
+      }
+
+      if (e.key === "ArrowRight") {
+        setSelected((prev) =>
+          prev === images.length - 1 ? 0 : (prev ?? 0) + 1,
+        );
+      }
+
+      if (e.key === "ArrowLeft") {
+        setSelected((prev) =>
+          prev === 0 ? images.length - 1 : (prev ?? 0) - 1,
+        );
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selected]);
 
   return (
     <div className="max-w-6xl mx-auto p-6">
