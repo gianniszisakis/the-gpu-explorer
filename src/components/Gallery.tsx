@@ -34,6 +34,13 @@ export default function Gallery() {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
+      <h2
+        className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center my-8 
+               text-blue-400 tracking-tight
+               drop-shadow-[0_0_12px_rgba(59,130,246,0.6)]"
+      >
+        Superposition Results
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {images.map((img, index) => (
           <img
