@@ -1,4 +1,4 @@
-export function Hero() {
+export default function Hero() {
   return (
     <div className="relative w-full h-[220px] overflow-hidden">
       <img
