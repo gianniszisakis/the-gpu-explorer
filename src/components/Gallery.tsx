@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { images } from "../data/images";
+import { useRef } from "react";
 
 export default function Gallery() {
   const [selected, setSelected] = useState<number | null>(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   //disable background scroll when image is open
   useEffect(() => {
@@ -41,6 +44,26 @@ export default function Gallery() {
     };
   }, [selected]);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.changedTouches[0].screenX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].screenX;
+
+    const diff = touchStartX.current - touchEndX.current;
+
+    if (Math.abs(diff) < 50) return; // ignore small moves
+
+    if (diff > 0) {
+      // swipe left → next
+      setSelected((prev) => (prev === images.length - 1 ? 0 : (prev ?? 0) + 1));
+    } else {
+      // swipe right → prev
+      setSelected((prev) => (prev === 0 ? images.length - 1 : (prev ?? 0) - 1));
+    }
+  };
+
   return (
     <div className="max-w-6xl mx-auto p-6">
       <h2
@@ -67,6 +90,8 @@ export default function Gallery() {
         <div
           className="fixed inset-0 bg-black/90 flex items-center justify-center z-50"
           onClick={() => setSelected(null)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           <img
             src={images[selected]}
