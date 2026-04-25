@@ -4,6 +4,15 @@ import { images } from "../data/images";
 export default function Gallery() {
   const [selected, setSelected] = useState<number | null>(null);
 
+  //disable background scroll when image is open
+  useEffect(() => {
+    if (selected !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [selected]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (selected === null) return;
