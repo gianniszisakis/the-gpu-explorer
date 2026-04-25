@@ -1,73 +1,72 @@
-# React + TypeScript + Vite
+# 🖥️ GPU Explorer Gallery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive GPU image gallery built with **React + TypeScript + Vite + Tailwind CSS**.
 
-Currently, two official plugins are available:
+This project showcases a premium UI with:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- responsive grid gallery
+- lightbox viewer with navigation
+- keyboard & swipe support
+- lazy-loaded images
+- modern dark UI design
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Live Demo
 
-## Expanding the ESLint configuration
+If deployed on Vercel:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+👉 https://the-gpu-explorer.vercel.app/
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📸 Features
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 🖼️ Gallery
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Responsive image grid (mobile-first)
+- GPU collection organized visually
+- Hover zoom effects
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 🔍 Lightbox
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Click to open images in fullscreen
+- Next / Previous navigation
+- Keyboard controls (← → ESC)
+- Mobile swipe support
+
+### ⚡ Performance
+
+- Lazy loading images
+- Optimized rendering
+- Fast Vite build system
+
+### 📱 Mobile Friendly
+
+- 1 image per row on mobile
+- Swipe navigation
+- Responsive lightbox
+
+---
+
+## 🛠️ Tech Stack
+
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- PostCSS
+
+---
+
+## 📂 Project Structure
+
+src/
+├── components/
+│ ├── Gallery.tsx
+│ ├── ProfileCard.tsx
+├── data/
+│ ├── images.ts
+├── App.tsx
+├── main.tsx
+├── index.css
