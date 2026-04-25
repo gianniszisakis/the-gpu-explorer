@@ -7,7 +7,6 @@ export default function ProfileCard() {
                       rounded-2xl p-5
                       shadow-[0_0_25px_rgba(59,130,246,0.25)]"
       >
-        {/* LEFT SIDE */}
         <div className="flex items-center gap-4">
           <img
             src="/the-gpu-explorer-profile.jpg"
@@ -22,13 +21,14 @@ export default function ProfileCard() {
               The GPU Explorer
             </h2>
             <p className="text-neutral-400 text-sm">
-              Chill channel for all the cool retards .... PC tech, Games,
-              Technology.
+              Chill channel for all the cool retards .
+            </p>
+            <p className="text-neutral-400 text-sm">
+              PC tech, Games, Technology
             </p>
           </div>
         </div>
 
-        {/* RIGHT SIDE */}
         <a
           href="https://www.youtube.com/@Madmax0620"
           target="_blank"
@@ -38,6 +38,7 @@ export default function ProfileCard() {
              shadow-[0_0_15px_rgba(59,130,246,0.4)]
              hover:scale-105 transition-all duration-200
              inline-block"
+          type="button"
         >
           Subscribe Now
         </a>
