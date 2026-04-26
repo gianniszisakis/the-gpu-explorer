@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { images } from "../data/images";
 import { useRef } from "react";
+import Filters from "./Filters";
 
 export default function Gallery() {
   const [selected, setSelected] = useState<number | null>(null);
+  const [filter, setFilter] = useState("all");
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
@@ -64,6 +66,14 @@ export default function Gallery() {
     }
   };
 
+  const filteredImages =
+    filter === "all" ? images : images.filter((img) => img.brand === filter);
+
+  const filterData = [
+    "all",
+    ...Array.from(new Set(images.map((img) => img.brand))),
+  ];
+
   return (
     <div className="max-w-6xl mx-auto p-6">
       <h2
@@ -73,11 +83,19 @@ export default function Gallery() {
       >
         Superposition Results
       </h2>
+      <div className="flex justify-center">
+        <Filters
+          filteredData={filterData}
+          filter={filter}
+          setFilter={setFilter}
+        />
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {images.map((img, index) => (
+        {filteredImages.map((img, index) => (
           <img
             key={index}
-            src={img}
+            src={img?.src}
+            alt={img?.brand}
             loading="lazy"
             onClick={() => setSelected(index)}
             className="w-full h-48 object-cover rounded-xl cursor-pointer
@@ -94,7 +112,7 @@ export default function Gallery() {
           onTouchEnd={handleTouchEnd}
         >
           <img
-            src={images[selected]}
+            src={images[selected]?.src}
             className="max-w-[95vw] max-h-[85vh] object-contain rounded-xl shadow-2xl animate-fade"
             onClick={(e) => e.stopPropagation()}
           />
