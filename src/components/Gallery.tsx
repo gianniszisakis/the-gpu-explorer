@@ -52,7 +52,7 @@ export default function Gallery() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [selected]);
+  }, [filteredImages.length, selected]);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.changedTouches[0].screenX;
