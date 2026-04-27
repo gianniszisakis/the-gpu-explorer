@@ -9,6 +9,14 @@ export default function Gallery() {
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
+  const filteredImages =
+    filter === "all" ? images : images.filter((img) => img.brand === filter);
+
+  const filterData = [
+    "all",
+    ...Array.from(new Set(images.map((img) => img.brand))),
+  ];
+
   //disable background scroll when image is open
   useEffect(() => {
     if (selected !== null) {
@@ -28,13 +36,13 @@ export default function Gallery() {
 
       if (e.key === "ArrowRight") {
         setSelected((prev) =>
-          prev === images.length - 1 ? 0 : (prev ?? 0) + 1,
+          prev === filteredImages.length - 1 ? 0 : (prev ?? 0) + 1,
         );
       }
 
       if (e.key === "ArrowLeft") {
         setSelected((prev) =>
-          prev === 0 ? images.length - 1 : (prev ?? 0) - 1,
+          prev === 0 ? filteredImages.length - 1 : (prev ?? 0) - 1,
         );
       }
     };
@@ -59,20 +67,16 @@ export default function Gallery() {
 
     if (diff > 0) {
       // swipe left → next
-      setSelected((prev) => (prev === images.length - 1 ? 0 : (prev ?? 0) + 1));
+      setSelected((prev) =>
+        prev === filteredImages.length - 1 ? 0 : (prev ?? 0) + 1,
+      );
     } else {
       // swipe right → prev
-      setSelected((prev) => (prev === 0 ? images.length - 1 : (prev ?? 0) - 1));
+      setSelected((prev) =>
+        prev === 0 ? filteredImages.length - 1 : (prev ?? 0) - 1,
+      );
     }
   };
-
-  const filteredImages =
-    filter === "all" ? images : images.filter((img) => img.brand === filter);
-
-  const filterData = [
-    "all",
-    ...Array.from(new Set(images.map((img) => img.brand))),
-  ];
 
   return (
     <div className="max-w-6xl mx-auto p-6">
