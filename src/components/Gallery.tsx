@@ -112,7 +112,7 @@ export default function Gallery() {
           onTouchEnd={handleTouchEnd}
         >
           <img
-            src={images[selected]?.src}
+            src={filteredImages[selected]?.src}
             className="max-w-[95vw] max-h-[85vh] object-contain rounded-xl shadow-2xl animate-fade"
             onClick={(e) => e.stopPropagation()}
           />
@@ -129,7 +129,7 @@ export default function Gallery() {
             onClick={(e) => {
               e.stopPropagation();
               setSelected((prev) =>
-                prev === 0 ? images.length - 1 : (prev ?? 0) - 1,
+                prev === 0 ? filteredImages.length - 1 : (prev ?? 0) - 1,
               );
             }}
           >
@@ -141,7 +141,7 @@ export default function Gallery() {
             onClick={(e) => {
               e.stopPropagation();
               setSelected((prev) =>
-                prev === images.length - 1 ? 0 : (prev ?? 0) + 1,
+                prev === filteredImages.length - 1 ? 0 : (prev ?? 0) + 1,
               );
             }}
           >
